@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Board Candidate Search Form</title>
+</head>
+<body style="font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto;">
+  <h2>Board Candidate Search Tool</h2>
+  <form id="searchForm">
+    <label><strong>1. Functional Experience</strong><br>
+      <input type="text" id="functional" placeholder="e.g., Marketing leadership, digital marketing" style="width: 100%">
+    </label><br><br>
+
+    <label><strong>2. Industry Background</strong><br>
+      <input type="text" id="industry" placeholder="e.g., QSR, retail, consumer goods" style="width: 100%">
+    </label><br><br>
+
+    <label><strong>3. Seniority & Roles</strong><br>
+      <input type="text" id="seniority" placeholder="e.g., CMO, VP Marketing" style="width: 100%">
+    </label><br><br>
+
+    <label><strong>4. Board Experience</strong><br>
+      <input type="text" id="board" placeholder="e.g., Yes, No, Doesn't matter" style="width: 100%">
+    </label><br><br>
+
+    <label><strong>5. Geographic Preference</strong><br>
+      <input type="text" id="geo" placeholder="e.g., U.S., West Coast" style="width: 100%">
+    </label><br><br>
+
+    <label><strong>6. Stage of Company Experience</strong><br>
+      <input type="text" id="stage" placeholder="e.g., High-growth, franchising, public" style="width: 100%">
+    </label><br><br>
+
+    <label><strong>7. Soft Filters (Optional)</strong><br>
+      <input type="text" id="soft" placeholder="e.g., PE experience, diversity" style="width: 100%">
+    </label><br><br>
+
+    <button type="button" onclick="generateSearch()">Generate LinkedIn Search Query</button>
+  </form>
+
+  <h3>Search Output</h3>
+  <p id="output"></p>
+
+  <script>
+    function generateSearch() {
+      const functional = document.getElementById('functional').value;
+      const industry = document.getElementById('industry').value;
+      const seniority = document.getElementById('seniority').value;
+      const board = document.getElementById('board').value;
+      const geo = document.getElementById('geo').value;
+      const stage = document.getElementById('stage').value;
+      const soft = document.getElementById('soft').value;
+
+      const query = `site:linkedin.com/in (${seniority}) (${functional}) (${industry}) (${board}) (${stage}) (${soft}) (${geo})`;
+
+      const encodedQuery = encodeURIComponent(query);
+      const googleSearchUrl = `https://www.google.com/search?q=${encodedQuery}`;
+
+      document.getElementById('output').innerHTML = `<a href="${googleSearchUrl}" target="_blank">Search LinkedIn with Google</a>`;
+    }
+  </script>
+</body>
+</html>
